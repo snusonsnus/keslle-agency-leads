@@ -1,4 +1,4 @@
-# Yazke Lead Finder
+# Keslle Agency Leads
 
 A Claude Code skill that finds real, fully-contactable local business leads and writes them into a Google Sheet shared with Logan. Runs on your own Claude Code account and credits — nothing here depends on Logan's Discord bot, his API keys, or his Google account.
 
@@ -18,20 +18,20 @@ pip install -r requirements.txt
 
 This lets the sheet-writer script log into **your own** Google account — nothing of Logan's.
 
-1. Go to https://console.cloud.google.com and create a new project (e.g. "Yazke Lead Finder")
+1. Go to https://console.cloud.google.com and create a new project (e.g. "Keslle Agency Leads")
 2. Go to "APIs & Services" → "Library" and enable:
    - **Google Sheets API**
    - **Google Drive API**
 3. Go to "APIs & Services" → "Credentials" → "Create Credentials" → "OAuth client ID"
    - If prompted, configure the consent screen first: choose "External", fill in an app name and your email, save through the defaults
    - Application type: **Desktop app**
-   - Name it anything (e.g. "Yazke Lead Finder")
+   - Name it anything (e.g. "Keslle Agency Leads")
    - Click Create
 4. Download the JSON file, rename it to `oauth_credentials.json`, and place it in this same folder
 
-### 3. Get added to the shared sheet
+### 3. Open the shared sheet
 
-Ask Logan to share the "Agency Leads" Google Sheet with your Google account's email address (Editor access). You won't be able to write to it until he does this.
+Logan will send you the link to the "Agency Leads" Google Sheet directly — it's set to "anyone with the link can edit," so you don't need to be added by email, just open the link he sends you.
 
 ### 4. First run
 

@@ -1,9 +1,9 @@
 ---
-name: yazke-lead-finder
-description: Use when Yazke asks (in plain language) for new sales leads, more leads, or to find businesses to call — no fixed command syntax required.
+name: keslle-agency-leads
+description: Use when the user asks (in plain language) for new sales leads, more leads, or to find businesses to call — no fixed command syntax required.
 ---
 
-# Yazke's Lead Finder
+# Keslle Agency Leads
 
 Finds real, fully-contactable local businesses and writes them into the shared "Agency Leads" Google Sheet. Runs entirely on native web browsing/search — no Google Places key, no Gemini key, no Apify key, no dependency on Logan's Discord bot or his other project. The only script involved is `sheet_writer.py` in this folder, which only writes rows — it never decides what counts as a good lead. That judgment happens here, in this skill.
 
@@ -19,11 +19,11 @@ Finds real, fully-contactable local businesses and writes them into the shared "
 6. Real estate — estate & letting agents
 7. Trades — **last resort only**, and only these four: roofers, plumbers, electricians, heating engineers
 
-Ask Yazke which category and which town/area if he hasn't said, rather than guessing.
+Ask which category and which town/area if the user hasn't said, rather than guessing.
 
 ## Batch size
 
-Default to **5** leads on a first request for a new category/area, even if he asks for more — validate quality with him before scaling up. Once a category+area has proven good, later batches can be bigger if he asks.
+Default to **5** leads on a first request for a new category/area, even if asked for more — validate quality with the user before scaling up. Once a category+area has proven good, later batches can be bigger if asked.
 
 ## Per-business research process
 
@@ -50,4 +50,4 @@ python sheet_writer.py add --name "<business name>" --category "<the category it
 
 ## Reporting back
 
-After a batch, tell Yazke plainly: how many leads were found and added, how many candidates were skipped and why (no website / no owner / no contact info / judged not a real active business), and the sheet link.
+After a batch, report back plainly: how many leads were found and added, how many candidates were skipped and why (no website / no owner / no contact info / judged not a real active business), and the sheet link.
