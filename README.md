@@ -48,4 +48,4 @@ Just ask Claude Code, in plain language, for leads — e.g. "find me some leads"
 - No Apify account/key
 - No access to Logan's Discord bot, browser session, or any of his credentials
 
-Every business is found and researched through Claude's own native web search/browsing, plus a free lookup on Companies House's public register (no key needed there either — it's a normal public website).
+Every business is found and researched through Claude's own native web search/browsing, plus a free lookup on OpenCorporates' public company register (no key needed there either — it's a normal public website).

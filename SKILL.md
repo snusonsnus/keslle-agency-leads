@@ -7,19 +7,23 @@ description: Use when the user asks (in plain language) for new sales leads, mor
 
 Finds real, fully-contactable local businesses and writes them into the shared "Agency Leads" Google Sheet. Runs entirely on native web browsing/search — no Google Places key, no Gemini key, no Apify key, no dependency on Logan's Discord bot or his other project. The only script involved is `sheet_writer.py` in this folder, which only writes rows — it never decides what counts as a good lead. That judgment happens here, in this skill.
 
+## Where to target
+
+**United States only** (mainland — all 4 US timezones). Real reason, not arbitrary: the user calls starting around 8pm Israel time, and that lands at roughly 1-2pm Eastern, 12-1pm Central, 11am-noon Mountain, and 10-11am Pacific — solidly inside business hours across the whole country. Don't target the UK, or any other country, unless explicitly asked — the whole point is candidates whose business hours actually line up with the calling window.
+
 ## Who to target
 
 **Never target tech companies.** In this priority order — everything before trades:
 
-1. Clinics — aesthetics, dental, physio, chiropractic, veterinary
-2. Law firms / professional services — solicitors, accountants
+1. Clinics — aesthetics, dental, physical therapy, chiropractic, veterinary
+2. Law firms / professional services — attorneys, accountants
 3. Personal care & fitness — hair salons, beauty salons, personal trainers/gyms
 4. Driving instructors
 5. Counselling / therapy practices
-6. Real estate — estate & letting agents
-7. Trades — **last resort only**, and only these four: roofers, plumbers, electricians, heating engineers
+6. Real estate — real estate agents/realtors
+7. Trades — **last resort only**, and only these four: roofers, plumbers, electricians, HVAC/heating & cooling technicians
 
-Ask which category and which town/area if the user hasn't said, rather than guessing.
+Ask which category and which US city/state if the user hasn't said, rather than guessing.
 
 ## Batch size
 
@@ -33,7 +37,7 @@ For each candidate, in this order:
 
 1. **Website check — first, always.** Does the business have a real, working website? If not, stop here. Skip this lead entirely, don't research further.
 2. **Contact info.** Check the business's own website (its contact/about page) first — often gives phone and email in one visit. If either is still missing, check its Google Business Profile and Facebook page next. A business can have more than one phone number (e.g. landline + mobile, main line + emergency/out-of-hours) — capture all of them, comma-separated.
-3. **Owner name.** Search the business name on Companies House's public register: `https://find-and-update.company-information.service.gov.uk/search?q=<business name>`. Open the matching company's officers / people-with-significant-control page and read the real name(s) listed — this is public data, no API key needed. If Companies House gives a clear match, that name is confirmed, use it as-is. If nothing matches there, fall back to whatever real name turns up in general web research (the business's own About page, press mentions, Google Business Profile) and write it with a trailing `?` (e.g. `Jane Smith?`) to mark it as unconfirmed rather than hiding it.
+3. **Owner name.** The US has no single national company register like the UK's Companies House — registration happens per-state. Search the business name on **OpenCorporates** (`https://opencorporates.com/companies/us?q=<business name>`), which aggregates most US state registries into one free, public search — no API key needed. If it gives a clear match with a real officer/agent name, that counts as confirmed, use it as-is. If nothing matches there (very common — many small US businesses are sole proprietorships or LLCs that don't publicly disclose an owner name at state level, this is normal, not a failure), fall back to whatever real name turns up in general web research (the business's own About page, press mentions, Google Business Profile) and write it with a trailing `?` (e.g. `Jane Smith?`) to mark it as unconfirmed rather than hiding it.
 4. **Judge the lead, don't just fill fields.** Even with all 4 fields technically present, drop a business that looks clearly defunct, inactive, or fake (dead site, no real reviews or signals of activity, obviously abandoned listing) — the goal is a real, currently-operating business, not just a filled row.
 
 ## The hard rule
